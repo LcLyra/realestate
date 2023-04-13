@@ -61,6 +61,7 @@ function App() {
       alert("Por favor, preencha os campos de nome, preço, preço de aluguel e endereço do dono");
       return;
     }
+    if(typeof window.ethereum !== 'undefined'){
 
     // Conecta a uma instância do contrato
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -75,6 +76,7 @@ function App() {
     } catch (err) {
       alert("Erro ao adicionar a casa: " + err.message);
     }
+    }
   }
   
   async function handleVenderCasa() {
@@ -82,16 +84,18 @@ function App() {
       alert("Por favor, preencha os campos de nome e quantidade");
       return;
     }
+    if(typeof window.ethereum !== 'undefined'){
     // Conecta a uma instância do contrato
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
-    try {
-      const tx = await contract.VenderCasa(nomeB, quantidadeB);
-      await tx.wait();
-      alert("Casa posta para venda com sucesso!");
-    } catch (err) {
-      alert("Erro ao vender a casa: " + err.message);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
+      try {
+        const tx = await contract.VenderCasa(nomeB, quantidadeB);
+        await tx.wait();
+        alert("Casa posta para venda com sucesso!");
+      } catch (err) {
+        alert("Erro ao vender a casa: " + err.message);
+      }
     }
   }
 
@@ -100,16 +104,18 @@ function App() {
       alert("Por favor, preencha os campos de nome e quantidade");
       return;
     }
+    if(typeof window.ethereum !== 'undefined'){
     // Conecta a uma instância do contrato
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
-    try {
-      const tx = await contract.DesistirVendaCasa(nomeC, quantidadeC);
-      await tx.wait();
-      alert("Venda desistida com sucesso!");
-    } catch (err) {
-      alert("Erro ao desistr da venda: " + err.message);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
+      try {
+        const tx = await contract.DesistirVendaCasa(nomeC, quantidadeC);
+        await tx.wait();
+        alert("Venda desistida com sucesso!");
+      } catch (err) {
+        alert("Erro ao desistr da venda: " + err.message);
+      }
     }
   }
 
@@ -118,34 +124,38 @@ function App() {
       alert("Por favor, preencha os campos de nome, vistoriador e dono");
       return;
     }
-    // Conecta a uma instância do contrato
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
-    try {
-      const tx = await contract.ProporVistoria(nomeD, vistoriadorD, enderecoD);
-      await tx.wait();
-      alert("Vistoria proposta com sucesso!");
-    } catch (err) {
-      alert("Erro ao propor vistoria: " + err.message);
+    if(typeof window.ethereum !== 'undefined'){
+      // Conecta a uma instância do contrato
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
+      try {
+        const tx = await contract.ProporVistoria(nomeD, vistoriadorD, enderecoD);
+        await tx.wait();
+        alert("Vistoria proposta com sucesso!");
+      } catch (err) {
+        alert("Erro ao propor vistoria: " + err.message);
+      }
     }
   }
-
+  
   async function handleAceitarVistoria(){
-     if (!nomeE || !enderecoE || !escolhaE) {
+    if (!nomeE || !enderecoE || !escolhaE) {
       alert("Por favor, preencha os campos de nome, endereco e escolha");
       return;
     }
+    if(typeof window.ethereum !== 'undefined'){
     // Conecta a uma instância do contrato
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
-    try {
-      const tx = await contract.AceitarVistoria(nomeE, enderecoE, escolhaE);
-      await tx.wait();
-      alert("Vistoria aceitar com sucesso!");
-    } catch (err) {
-      alert("Erro ao aceitar vistoria: " + err.message);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
+      try {
+        const tx = await contract.AceitarVistoria(nomeE, enderecoE, escolhaE);
+        await tx.wait();
+        alert("Vistoria aceitar com sucesso!");
+      } catch (err) {
+        alert("Erro ao aceitar vistoria: " + err.message);
+      }
     } 
   }
 
@@ -154,17 +164,19 @@ function App() {
       alert("Por favor, preencha os campos de nome, quantidade, dono e vistoriador");
       return;
     }
-    // Conecta a uma instância do contrato
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
-    try {
-      const tx = await contract.ComprarCasa(nomeF,quantidadeF,enderecoF, vistoriadorF);
-      await tx.wait();
-      alert("Vistoria aceitar com sucesso!");
-    } catch (err) {
-      alert("Erro ao aceitar vistoria: " + err.message);
-    } 
+    if(typeof window.ethereum !== 'undefined'){
+      // Conecta a uma instância do contrato
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
+      try {
+        const tx = await contract.ComprarCasa(nomeF,quantidadeF,enderecoF, vistoriadorF);
+        await tx.wait();
+        alert("Vistoria aceitar com sucesso!");
+      } catch (err) {
+        alert("Erro ao aceitar vistoria: " + err.message);
+      } 
+    }
   }
 
   async function handleVotacaoCasa(){
@@ -172,16 +184,18 @@ function App() {
       alert("Por favor, preencha os campos de nome e escolha");
       return;
     }
-    // Conecta a uma instância do contrato
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
-    try {
-      const tx = await contract.VotacaoCasa(nomeG, escolhaG);
-      await tx.wait();
-      alert("Votado com sucesso!");
-    } catch (err) {
-      alert("Erro ao votar: " + err.message);
+    if(typeof window.ethereum !== 'undefined'){
+      // Conecta a uma instância do contrato
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
+      try {
+        const tx = await contract.VotacaoCasa(nomeG, escolhaG);
+        await tx.wait();
+        alert("Votado com sucesso!");
+      } catch (err) {
+        alert("Erro ao votar: " + err.message);
+      }
     } 
   }
 
@@ -190,16 +204,18 @@ function App() {
       alert("Por favor, preencha os campos de nome e escolha");
       return;
     }
-    // Conecta a uma instância do contrato
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
-    try {
-      const tx = await contract.AlugarCasa(nomeH, quantidadeH);
-      await tx.wait();
-      alert("Alugado com sucesso!");
-    } catch (err) {
-      alert("Erro ao alugar: " + err.message);
+    if(typeof window.ethereum !== 'undefined'){
+      // Conecta a uma instância do contrato
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
+      try {
+        const tx = await contract.AlugarCasa(nomeH, quantidadeH);
+        await tx.wait();
+        alert("Alugado com sucesso!");
+      } catch (err) {
+        alert("Erro ao alugar: " + err.message);
+      }
     }
   }
 
@@ -208,17 +224,19 @@ function App() {
       alert("Por favor, preencha os campos de nome e escolha");
       return;
     }
-    // Conecta a uma instância do contrato
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
-    try {
-      const tx = await contract.DesistirAluguel(nomeI, quantidadeI);
-      await tx.wait();
-      alert("Aluguel desistido com sucesso!");
-    } catch (err) {
-      alert("Erro ao desistir: " + err.message);
-    }
+    if(typeof window.ethereum !== 'undefined'){
+      // Conecta a uma instância do contrato
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
+      try {
+        const tx = await contract.DesistirAluguel(nomeI, quantidadeI);
+        await tx.wait();
+        alert("Aluguel desistido com sucesso!");
+      } catch (err) {
+        alert("Erro ao desistir: " + err.message);
+      }
+    }  
   }
 
   async function handlePagarAluguel() {
@@ -226,16 +244,18 @@ function App() {
       alert("Por favor, preencha os campos de nome");
       return;
     }
-    // Conecta a uma instância do contrato
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
-    try {
-      const tx = await contract.PagarAluguel(nomeJ);
-      await tx.wait();
-      alert("Aluguel pago com sucesso!");
-    } catch (err) {
-      alert("Erro ao pagar aluguel: " + err.message);
+    if(typeof window.ethereum !== 'undefined'){
+      // Conecta a uma instância do contrato
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
+      try {
+        const tx = await contract.PagarAluguel(nomeJ);
+        await tx.wait();
+        alert("Aluguel pago com sucesso!");
+      } catch (err) {
+        alert("Erro ao pagar aluguel: " + err.message);
+      }
     }
   }
 
@@ -244,16 +264,18 @@ function App() {
       alert("Por favor, preencha os campos de nome");
       return;
     }
-    // Conecta a uma instância do contrato
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
-    try {
-      const tx = await contract.CobrarAluguel(nomeK);
-      await tx.wait();
-      alert("Aluguel cobrado com sucesso!");
-    } catch (err) {
-      alert("Erro ao cobrar aluguel: " + err.message);
+    if(typeof window.ethereum !== 'undefined'){
+      // Conecta a uma instância do contrato
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(Casas.address, Casas.abi, signer);
+      try {
+        const tx = await contract.CobrarAluguel(nomeK);
+        await tx.wait();
+        alert("Aluguel cobrado com sucesso!");
+      } catch (err) {
+        alert("Erro ao cobrar aluguel: " + err.message);
+      }
     }
   }
 
